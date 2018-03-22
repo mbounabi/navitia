@@ -968,14 +968,6 @@ class TestBragiAutocomplete(AbstractTestFixture):
             admins = r[0]['stop_area'].get('administrative_regions')
             assert len(admins) == 1
 
-            if os.getenv('JORMUNGANDR_USE_SERPY'):
-                assert r[0]['stop_area'].get('feed_publishers')
-                assert len(r[0]['stop_area'].get('feed_publishers'))==1
-                assert r[0]['stop_area'].get('feed_publishers')[0].get('id') == 'bob_publisher'
-                assert r[0]['stop_area'].get('feed_publishers')[0].get('name') == 'Bobenstreetmap'
-                assert r[0]['stop_area'].get('feed_publishers')[0].get('license') == 'OBobDL'
-                assert r[0]['stop_area'].get('feed_publishers')[0].get('url') == 'https://www.Bobenstreetmap.org/copyright'
-
     def test_stop_area_with_modes_depth_zero(self):
         mock_requests = mock_bragi_autocomplete_call(deepcopy(BRAGI_MOCK_STOP_AREA_WITH_MORE_ATTRIBUTS))
         with mock.patch('requests.get', mock_requests.get):
