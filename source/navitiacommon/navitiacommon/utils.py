@@ -48,7 +48,6 @@ def type_of_data(filename):
      - 'fare'
      - 'osm'
      - 'geopal'
-     - 'fusio'
      - 'poi'
      - 'synonym'
      - 'shape'

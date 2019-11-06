@@ -497,6 +497,15 @@ def scan_instances():
             models.db.session.add(instance)
             models.db.session.commit()
 
+            # Post RabbitMQ message
+            from tyr import artemis_rabbit_mq_handler
+
+            logger = logging.getLogger(__name__)
+            logger.info(" ---> PUBLISH : {}.task.scan".format(instance.name))
+            artemis_rabbit_mq_handler.publish(
+                payload="instance scanned", routing_key="{}.task.scan".format(instance.name), serializer="json"
+            )
+
 
 @celery.task()
 def reload_kraken(instance_id):

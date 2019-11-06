@@ -87,5 +87,6 @@ redis = Redis(
 )
 
 tyr_rabbit_mq_handler = RabbitMqHandler(app.config['CELERY_BROKER_URL'], "tyr_event_exchange")
+artemis_rabbit_mq_handler = RabbitMqHandler(app.config['CELERY_BROKER_URL'], "artemis_event_exchange")
 
 import tyr.api
