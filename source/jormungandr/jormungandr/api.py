@@ -52,6 +52,7 @@ def output_jsonp(data, code, headers=None):
     callback = request.args.get('callback', False)
     if callback:
         resp.data = six.text_type(callback) + '(' + resp.data + ')'
+        print("ok")
     return resp
 
 
